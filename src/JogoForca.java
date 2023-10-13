@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class JogoForca {
@@ -29,6 +30,7 @@ public class JogoForca {
         String palavraSecreta = "Cachorro".toUpperCase();
         char[] palavraDescoberta;
         int tentativasRestantes = 6;
+        ArrayList<Character> letrasChutadas = new ArrayList<>();
 
         palavraDescoberta = new char[palavraSecreta.length()];
         for (int i = 0; i < palavraDescoberta.length; i++) {
@@ -38,15 +40,20 @@ public class JogoForca {
 
         while (tentativasRestantes > 0) {
             System.out.println("Tentativas restantes = " + tentativasRestantes);
+            if(letrasChutadas.size() != 0){
+            System.out.println("Você já chutou essas letras: " + letrasChutadas);
+            }
             System.out.println(palavraDescoberta);
             System.out.println("Digite uma letra");
             char chute = teclado.nextLine().toUpperCase().charAt(0);
+
             for (int i = 0; i < palavraDescoberta.length; i++) {
                 if (chute == palavraSecreta.charAt(i)) {
                     palavraDescoberta[i] = palavraSecreta.charAt(i);
                     validadordepontos++;
                 }
             }
+            letrasChutadas.add(chute);
             if (validadordepontos > 0) {
                 System.out.println("Parabens! A letra " + chute + " é usada " + validadordepontos + " vezes nessa palavra");
                 validadordepontos = 0;
